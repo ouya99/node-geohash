@@ -1,5 +1,7 @@
 ## Fork to use BASE16-TAGS for IOTA Tangle GeoTags
 
+## alpha version - changes are imminent
+
 
 node-geohash
 ============
@@ -22,9 +24,9 @@ npm install ngeohash
 
 ```javascript
 var geohash = require('ngeohash');
-console.log(geohash.encode(37.8324, 112.5584));
-// prints ww8p1r4t8
-var latlon = geohash.decode('ww8p1r4t8');
+console.log(geohash.encode(48.0, 11.0));
+// prints NADKLCB
+var latlon = geohash.decode('NADKLCB');
 console.log(latlon.latitude);
 console.log(latlon.longitude);
 ```

@@ -1,37 +1,26 @@
 {
-  "author": "Ning Sun <classicning@gmail.com> (https://sunng.info/)",
-  "contributors": [
-    "Arjun Mehta <arjunmeht@gmail.com> (http://www.arjunmehta.net/)",
-    "Seth Miller <seth@four43.com> (http://www.four43.com)",
-    "Zhu Zhe <zhuzhe1983@gmail.com>"
-  ],
-  "name": "ngeohashiota",
-  "description": "geohash library for nodejs",
-  "keywords": [
-    "geohash",
-    "uint64",
-    "geohasher",
-    "geocode",
-    "geolocation"
-  ],
-  "version": "0.6.0",
-  "repository": {
-    "url": "https://github.com/sunng87/node-geohash"
-  },
-  "engines": {
-    "node": ">=v0.2.0"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "assert": ">=1.0",
-    "nodeunit": ">=0.8",
-    "browserify": ">=5.0"
+  "name": "iota-geohash",
+  "version": "1.0.1",
+  "description": "Hash your geo coordinates to a iota tangle tag",
+  "main": "main.js",
+  "directories": {
+    "test": "tests"
   },
   "scripts": {
-    "test": "nodeunit tests/test.js",
-    "install": "browserify . -o ngeohash.js -s ngeohash"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "main": "./main",
-  "license": "MIT",
-  "readmeFilename": "README.md"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ouya99/node-geohash.git"
+  },
+  "keywords": [
+    "iota",
+    "geohash"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ouya99/node-geohash/issues"
+  },
+  "homepage": "https://github.com/ouya99/node-geohash#readme"
 }
