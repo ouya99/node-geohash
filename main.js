@@ -23,10 +23,10 @@
  *
  */
 
-var BASE32_CODES = "ABCDEFGHIJKLMNOP";
-var BASE32_CODES_DICT = {};
-for (var i = 0; i < BASE32_CODES.length; i++) {
-  BASE32_CODES_DICT[BASE32_CODES.charAt(i)] = i;
+var BASE16_CODES = "ABCDEFGHIJKLMNOP";
+var BASE16_CODES_DICT = {};
+for (var i = 0; i < BASE16_CODES.length; i++) {
+  BASE16_CODES_DICT[BASE16_CODES.charAt(i)] = i;
 }
 
 var ENCODE_AUTO = 'auto';
@@ -99,8 +99,8 @@ var encode = function (latitude, longitude, numberOfChars) {
 
     bits++;
     bitsTotal++;
-    if (bits === 4) { // TODO 5->4 to BASE16 instead of BASE32
-      var code = BASE32_CODES[hash_value];
+    if (bits === 4) { // TODO 5->4 to BASE16 instead of BASE16
+      var code = BASE16_CODES[hash_value];
       chars.push(code);
       bits = 0;
       hash_value = 0;
@@ -175,7 +175,7 @@ var decode_bbox = function (hash_string) {
 
     var code = hash_string[i].toUpperCase();
 
-    hashValue = BASE32_CODES_DICT[code];
+    hashValue = BASE16_CODES_DICT[code];
 
     for (var bits = 3; bits >= 0; bits--) {
       var bit = (hashValue >> bits) & 1;
