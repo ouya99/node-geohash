@@ -5,7 +5,7 @@
     "Seth Miller <seth@four43.com> (http://www.four43.com)",
     "Zhu Zhe <zhuzhe1983@gmail.com>"
   ],
-  "name": "ngeohash",
+  "name": "ngeohashiota",
   "description": "geohash library for nodejs",
   "keywords": [
     "geohash",

@@ -1,3 +1,6 @@
+## Fork to use BASE16-TAGS for IOTA Tangle GeoTags
+
+
 node-geohash
 ============
 

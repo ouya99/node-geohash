@@ -23,7 +23,7 @@
  *
  */
 
-var BASE32_CODES = "0123456789bcdefghjkmnpqrstuvwxyz";
+var BASE32_CODES = "ABCDEFGHIJKLMNOP";
 var BASE32_CODES_DICT = {};
 for (var i = 0; i < BASE32_CODES.length; i++) {
   BASE32_CODES_DICT[BASE32_CODES.charAt(i)] = i;
@@ -64,7 +64,7 @@ var encode = function (latitude, longitude, numberOfChars) {
     var numberOfSigFigs = Math.max(decSigFigsLat, decSigFigsLong);
     numberOfChars = SIGFIG_HASH_LENGTH[numberOfSigFigs];
   } else if (numberOfChars === undefined) {
-    numberOfChars = 9;
+    numberOfChars = 7;
   }
 
   var chars = [],
@@ -99,7 +99,7 @@ var encode = function (latitude, longitude, numberOfChars) {
 
     bits++;
     bitsTotal++;
-    if (bits === 5) {
+    if (bits === 4) { // TODO 5->4 to BASE16 instead of BASE32
       var code = BASE32_CODES[hash_value];
       chars.push(code);
       bits = 0;
@@ -172,10 +172,12 @@ var decode_bbox = function (hash_string) {
 
   var hashValue = 0;
   for (var i = 0, l = hash_string.length; i < l; i++) {
-    var code = hash_string[i].toLowerCase();
+
+    var code = hash_string[i].toUpperCase();
+
     hashValue = BASE32_CODES_DICT[code];
 
-    for (var bits = 4; bits >= 0; bits--) {
+    for (var bits = 3; bits >= 0; bits--) {
       var bit = (hashValue >> bits) & 1;
       if (isLon) {
         mid = (maxLon + minLon) / 2;
@@ -341,6 +343,9 @@ var neighbors = function(hash_string){
     var latErr = lonlat.error.latitude * 2;
     var lonErr = lonlat.error.longitude * 2;
 
+    console.log(lat);
+    console.log(lon);
+
     var neighbor_lat,
         neighbor_lon;
 
@@ -356,8 +361,10 @@ var neighbors = function(hash_string){
                             ];
 
     function encodeNeighbor(neighborLatDir, neighborLonDir){
+
         neighbor_lat = lat + neighborLatDir * latErr;
         neighbor_lon = lon + neighborLonDir * lonErr;
+        console.log(neighbor_lat);
         return encode(neighbor_lat, neighbor_lon, hashstringLength);
     }
 
@@ -421,7 +428,7 @@ var neighbors_int = function(hash_int, bitDepth){
  * @returns {bboxes.hashList|Array}
  */
 var bboxes = function (minLat, minLon, maxLat, maxLon, numberOfChars) {
-  numberOfChars = numberOfChars || 9;
+  numberOfChars = numberOfChars || 7;
 
   var hashSouthWest = encode(minLat, minLon, numberOfChars);
   var hashNorthEast = encode(maxLat, maxLon, numberOfChars);
@@ -507,3 +514,4 @@ var geohash = {
 };
 
 module.exports = geohash;
+
