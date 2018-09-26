@@ -494,6 +494,42 @@ var bboxes_int = function(minLat, minLon, maxLat, maxLon, bitDepth){
     return hashList;
 };
 
+/**
+ * Calculate all combinations for a wildcard ? in a string
+ *
+ * Return all the combinations in an array
+ * @param {String} w
+ * @returns {Array}
+ */
+var combinations = function(w){
+    var x = new Array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P"),
+        n = w.match(/\!/g).length,
+        x_n = new Array(),
+        r = new Array(),
+        c = null;
+
+    for (var i = n; i > 0; i--) {
+        x_n.push(x);
+    }
+
+    c = x_n.reduce(function(a, b) {
+        var c = [];
+        a.forEach(function(a) {
+            b.forEach(function(b) {
+                c.push(a.concat([b]));
+            });
+        });
+        return c;
+    }, [[]]);
+
+    for (var i = 0, j = 0; i < c.length; i++, j = 0) {
+        r.push(w.replace(/\!/g, function(s, k) {
+            return c[i][j++];
+        }));
+    }
+    return r;
+}
+
 var geohash = {
   'ENCODE_AUTO': ENCODE_AUTO,
   'encode': encode,
@@ -510,8 +546,8 @@ var geohash = {
   'neighbors': neighbors,
   'neighbors_int': neighbors_int,
   'bboxes': bboxes,
-  'bboxes_int': bboxes_int
+  'bboxes_int': bboxes_int,
+  'combinations': combinations
 };
 
 module.exports = geohash;
-

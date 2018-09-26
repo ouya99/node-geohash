@@ -1,6 +1,6 @@
 {
   "name": "iota-geohash",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "description": "Hash your geo coordinates to a iota tangle tag",
   "main": "main.js",
   "directories": {
